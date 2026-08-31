@@ -1,6 +1,5 @@
-// التاريخ والوقت المستهدف: 31 أغسطس، الساعة 1:00 صباحاً (01:00)
-// يمكنك تغيير السنة (مثل 2026 أو 2027) حسب السنة المرغوبة للعداد
-const targetDate = new Date("2026-08-31T01:00:00").getTime();
+// التاريخ والوقت المستهدف: 31 أغسطس، الساعة 1:00 صباحاً
+const targetDate = new Date("2027-08-31T01:00:00").getTime();
 
 function updateCountdown() {
     const now = new Date().getTime();
@@ -17,7 +16,6 @@ function updateCountdown() {
         document.getElementById("minutes").innerText = minutes < 10 ? "0" + minutes : minutes;
         document.getElementById("seconds").innerText = seconds < 10 ? "0" + seconds : seconds;
     } else {
-        // في حال وصول الوقت المحدد
         document.getElementById("days").innerText = "00";
         document.getElementById("hours").innerText = "00";
         document.getElementById("minutes").innerText = "00";
@@ -27,4 +25,3 @@ function updateCountdown() {
 
 setInterval(updateCountdown, 1000);
 updateCountdown();
-
