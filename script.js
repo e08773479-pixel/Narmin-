@@ -1,4 +1,4 @@
-class LoveApp {
+class ProfessionalLoveApp {
     constructor() {
         this.notes = [
             "أحلى صدفة في حياتي إنك معايا يا نرمين.. ربنا ما يحرمني منك أبداً! ✨",
@@ -17,6 +17,7 @@ class LoveApp {
         this.passInput = document.getElementById('pass-input');
         this.loginBtn = document.getElementById('login-btn');
         this.errorMsg = document.getElementById('error-msg');
+        this.loginCard = document.getElementById('loginCard');
         
         this.msgText = document.getElementById('msg-text');
         this.nextMsgBtn = document.getElementById('next-msg-btn');
@@ -31,6 +32,17 @@ class LoveApp {
         this.nextMsgBtn.addEventListener('click', () => this.changeMessage());
     }
 
+    // دالة برمجة الكتابة الآلية (Typing Effect) الاحترافية
+    typeWriter(text, i = 0) {
+        if (i === 0) {
+            this.msgText.textContent = "";
+        }
+        if (i < text.length) {
+            this.msgText.textContent += text.charAt(i);
+            setTimeout(() => this.typeWriter(text, i + 1), 40);
+        }
+    }
+
     checkPassword() {
         const val = this.passInput.value.trim();
         if (val === "بحبك") {
@@ -39,30 +51,33 @@ class LoveApp {
             this.startAppFeatures();
         } else {
             this.errorMsg.textContent = "اكتب كلمة (بحبك) صح عشان تفتح المفاجأة! ❤️";
+            // تفعيل حركة الاهتزاز عند الخطأ كمهندس برمجيات حقيقي
+            this.loginCard.classList.add('shake');
+            setTimeout(() => {
+                this.loginCard.classList.remove('shake');
+            }, 400);
         }
     }
 
     changeMessage() {
         this.currentNoteIndex = (this.currentNoteIndex + 1) % this.notes.length;
-        this.msgText.style.opacity = 0;
-        setTimeout(() => {
-            this.msgText.textContent = this.notes[this.currentNoteIndex];
-            this.msgText.style.opacity = 1;
-        }, 200);
-        this.msgText.style.transition = 'opacity 0.3s ease';
+        this.typeWriter(this.notes[this.currentNoteIndex]);
     }
 
     startAppFeatures() {
+        // كتابة أول رسالة بالنوع الآلي فور فتح الشاشة
+        this.typeWriter(this.notes[0]);
+
         // تشغيل القلوب المتحركة
         setInterval(() => {
             const h = document.createElement('div');
             h.classList.add('heart');
-            h.innerHTML = '❤️';
+            h.innerHTML = '✨';
             h.style.left = Math.random() * 100 + 'vw';
-            h.style.animationDuration = (Math.random() * 2 + 3) + 's';
+            h.style.animationDuration = (Math.random() * 3 + 4) + 's';
             document.getElementById('heartsLayer').appendChild(h);
-            setTimeout(() => h.remove(), 5000);
-        }, 400);
+            setTimeout(() => h.remove(), 6000);
+        }, 500);
 
         // تشغيل العداد من الساعة 1:00 صباحاً اليوم
         this.initCounter();
@@ -89,5 +104,5 @@ class LoveApp {
 }
 
 document.addEventListener('DOMContentLoaded', () => {
-    new LoveApp();
+    new ProfessionalLoveApp();
 });
