@@ -1,0 +1,288 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>معرض السعادة - يوسف ونرمين</title>
+    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+    
+    <style>
+        /* تنسيقات خاصة بمعرض السعادة */
+        .gallery-header {
+            text-align: center;
+            margin-bottom: 30px;
+        }
+
+        .upload-section {
+            background: rgba(15, 23, 33, 0.85);
+            border: 1px solid #d4af37;
+            border-radius: 15px;
+            padding: 25px;
+            max-width: 600px;
+            margin: 0 auto 40px auto;
+            text-align: center;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.4);
+        }
+
+        .upload-section h3 {
+            color: #d4af37;
+            margin-bottom: 15px;
+        }
+
+        .custom-file-upload {
+            display: inline-block;
+            background: linear-gradient(135deg, #d4af37, #aa820a);
+            color: #060b11;
+            padding: 12px 25px;
+            font-weight: bold;
+            border-radius: 30px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            margin-bottom: 15px;
+        }
+
+        .custom-file-upload:hover {
+            transform: scale(1.05);
+            box-shadow: 0 0 15px rgba(212, 175, 55, 0.6);
+        }
+
+        #file-input {
+            display: none;
+        }
+
+        .caption-input {
+            width: 100%;
+            padding: 10px;
+            border-radius: 8px;
+            border: 1px solid rgba(212, 175, 55, 0.4);
+            background: rgba(255, 255, 255, 0.05);
+            color: #fff;
+            font-family: 'Cairo', sans-serif;
+            margin-bottom: 15px;
+            box-sizing: border-box;
+            text-align: center;
+        }
+
+        .caption-input:focus {
+            outline: none;
+            border-color: #d4af37;
+        }
+
+        .submit-btn {
+            background: #d4af37;
+            color: #060b11;
+            border: none;
+            padding: 10px 30px;
+            font-weight: bold;
+            border-radius: 20px;
+            cursor: pointer;
+            font-family: 'Cairo', sans-serif;
+            transition: 0.3s;
+        }
+
+        .submit-btn:hover {
+            background: #fff;
+        }
+
+        /* شبكة عرض الصور */
+        .gallery-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+            gap: 20px;
+            margin-top: 20px;
+        }
+
+        .gallery-card {
+            background: rgba(15, 23, 33, 0.9);
+            border: 1px solid rgba(212, 175, 55, 0.4);
+            border-radius: 12px;
+            overflow: hidden;
+            transition: all 0.3s ease;
+            display: flex;
+            flex-direction: column;
+            position: relative;
+        }
+
+        .gallery-card:hover {
+            transform: translateY(-5px);
+            border-color: #d4af37;
+            box-shadow: 0 5px 20px rgba(212, 175, 55, 0.3);
+        }
+
+        .gallery-img {
+            width: 100%;
+            height: 200px;
+            object-fit: cover;
+            border-bottom: 1px solid rgba(212, 175, 55, 0.2);
+        }
+
+        .gallery-caption {
+            padding: 12px;
+            color: #e0e0e0;
+            font-size: 14px;
+            text-align: center;
+        }
+
+        .gallery-date {
+            font-size: 11px;
+            color: #d4af37;
+            margin-top: 5px;
+            display: block;
+        }
+
+        .preview-container {
+            margin: 10px 0;
+            display: none;
+        }
+
+        .preview-img {
+            max-width: 150px;
+            max-height: 150px;
+            border-radius: 8px;
+            border: 1px solid #d4af37;
+        }
+    </style>
+</head>
+<body>
+
+    <!-- شريط التنقل -->
+    <header class="navbar">
+        <div class="logo">يوسف ونرمين</div>
+        <nav>
+            <ul class="nav-links">
+                <li><a href="index.html">الرئيسية</a></li>
+                <li><a href="journey.html">رحلتنا الخالدة</a></li>
+                <li><a href="words.html">كلمات من القلب</a></li>
+                <li><a href="gallery.html" class="active">معرض السعادة</a></li>
+                <li><a href="memories.html">ذكرياتنا</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <main class="main-content">
+        <div class="container">
+            <div class="gallery-header">
+                <h1 class="page-title">معرض السعادة 📸</h1>
+                <p class="calendar-subtitle">شاركونا أجمل اللحظات والصور الخاصة بيوسف ونرمين</p>
+            </div>
+
+            <!-- صندوق رفع الصور -->
+            <div class="upload-section">
+                <h3>إضافة صورة جديدة للمعرض</h3>
+                
+                <label for="file-input" class="custom-file-upload">
+                    اختيار صورة 📁
+                </label>
+                <input type="file" id="file-input" accept="image/*" onchange="previewFile()">
+
+                <div class="preview-container" id="preview-container">
+                    <img id="preview-img" class="preview-img" src="" alt="معاينة">
+                </div>
+
+                <input type="text" id="image-caption" class="caption-input" placeholder="اكتب وصفاً أو تعليقاً على الصورة (اختياري)...">
+                <br>
+                <button class="submit-btn" onclick="uploadImage()">نشر الصورة في المعرض ✨</button>
+            </div>
+
+            <!-- شبكة عرض الصور -->
+            <div class="gallery-grid" id="gallery-grid">
+                <!-- الصور ستظهر هنا تلقائياً -->
+            </div>
+        </div>
+    </main>
+
+    <!-- كود الجافاسكربت الخاص بإدارة المعرض -->
+    <script>
+        // معاينة الصورة قبل النشر
+        function previewFile() {
+            const preview = document.getElementById('preview-img');
+            const file = document.getElementById('file-input').files[0];
+            const container = document.getElementById('preview-container');
+
+            if (file) {
+                const reader = new FileReader();
+                reader.onloadend = function () {
+                    preview.src = reader.result;
+                    container.style.display = 'block';
+                }
+                reader.readAsDataURL(file);
+            }
+        }
+
+        // حفظ الصورة وإضافتها للمعرض
+        function uploadImage() {
+            const fileInput = document.getElementById('file-input');
+            const captionInput = document.getElementById('image-caption');
+            const file = fileInput.files[0];
+
+            if (!file) {
+                alert('الرجاء اختيار صورة أولاً!');
+                return;
+            }
+
+            const reader = new FileReader();
+            reader.onloadend = function () {
+                const base64Image = reader.result;
+                const caption = captionInput.value.trim() || 'ذكرى جميلة ❤️';
+                const dateStr = new Date().toLocaleDateString('ar-EG');
+
+                const newPhoto = {
+                    id: Date.now(),
+                    url: base64Image,
+                    caption: caption,
+                    date: dateStr
+                };
+
+                // حفظ في localStorage
+                let photos = JSON.parse(localStorage.getItem('yn_gallery_photos')) || [];
+                photos.unshift(newPhoto); // إضافة الصورة الجديدة في الأول
+                
+                try {
+                    localStorage.setItem('yn_gallery_photos', JSON.stringify(photos));
+                    
+                    // إعادة التعيين ورسم المعرض
+                    fileInput.value = '';
+                    captionInput.value = '';
+                    document.getElementById('preview-container').style.display = 'none';
+                    renderGallery();
+                    alert('تمت إضافة الصورة بنجاح! ✨');
+                } catch (e) {
+                    alert('حجم الصورة كبير جداً، يرجى اختيار صورة بحجم أصغر.');
+                }
+            }
+
+            reader.readAsDataURL(file);
+        }
+
+        // عرض الصور في المعرض
+        function renderGallery() {
+            const galleryGrid = document.getElementById('gallery-grid');
+            const photos = JSON.parse(localStorage.getItem('yn_gallery_photos')) || [];
+
+            galleryGrid.innerHTML = '';
+
+            if (photos.length === 0) {
+                galleryGrid.innerHTML = '<p style="color:#aaa; text-align:center; grid-column: 1/-1;">لا توجد صور في المعرض بعد.. كن أول من يضيف صورة! ❤️</p>';
+                return;
+            }
+
+            photos.forEach(photo => {
+                const card = document.createElement('div');
+                card.className = 'gallery-card';
+                card.innerHTML = `
+                    <img src="${photo.url}" class="gallery-img" alt="صورة المعرض">
+                    <div class="gallery-caption">
+                        <div>${photo.caption}</div>
+                        <span class="gallery-date">${photo.date}</span>
+                    </div>
+                `;
+                galleryGrid.appendChild(card);
+            });
+        }
+
+        // تشغيل المعرض فور تحميل الصفحة
+        document.addEventListener('DOMContentLoaded', renderGallery);
+    </script>
+</body>
+</html>
