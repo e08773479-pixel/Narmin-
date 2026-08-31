@@ -1,34 +1,42 @@
+
 <!DOCTYPE html>
 <html lang="ar" dir="rtl">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>الصفحة الرئيسية - نرمين</title>
-    <link rel="stylesheet" href="css/style.css">
+    <title>يوسف ونرمين - بوابة الحب</title>
+    <!-- خط Cairo من جافا -->
+    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
 </head>
 <body>
 
     <!-- شريط التنقل العلوي -->
     <header class="navbar">
-        <div class="logo">نرمين</div>
+        <div class="logo">يوسف ونرمين</div>
         <nav>
             <ul class="nav-links">
-                <li><a href="index.html" class="active">الرئيسية</a></li>
-                <li><a href="journey.html">رحلتنا</a></li>
-                <li><a href="words.html">كلماتنا</a></li>
-                <li><a href="gallery.html">معرضنا</a></li>
+                <li><a href="#" class="active">الرئيسية</a></li>
+                <li><a href="#">رحلتنا الخالدة</a></li>
+                <li><a href="#">كلمات من القلب</a></li>
+                <li><a href="#">معرض السعادة</a></li>
+                <li><a href="#">ذكرياتنا</a></li>
             </ul>
         </nav>
     </header>
 
-    <!-- القسم الرئيسي وخلفية الطبيعة الفخمة مع عداد الوقت -->
-    <main class="hero-section">
+    <!-- القسم الرئيسي وخلفية الطبيعة الفخمة -->
+    <section class="hero-section">
         <div class="overlay"></div>
-        <div class="content-container">
-            <h1>عداد الوقت - نرمين</h1>
+        <div class="hero-content">
+            <h1 class="main-title">مرحباً بكم في عالم يوسف ونرمين</h1>
+            <p class="sub-title">حب أبدي، ذكريات لا تُنسى</p>
+
+            <!-- عنوان العداد -->
+            <h2 class="timer-title" id="timer-title">اللقاء الأول / رحلتنا تبدأ خلال...</h2>
             
-            <!-- عداد الوقت التنازلي -->
-            <div class="countdown-timer" id="countdown">
+            <!-- عداد الوقت الفخم -->
+            <div class="countdown-timer">
                 <div class="time-box">
                     <span id="days">00</span>
                     <label>يوم</label>
@@ -46,14 +54,36 @@
                     <label>ثانية</label>
                 </div>
             </div>
+        </div>
+    </section>
 
-            <!-- مساحة فارغة لكتابة الكلمات حسب رغبتك -->
-            <div class="custom-text-box">
-                <p>مخصص خصيصاً لكِ يا نرمين... اكتب هنا الكلمات التي تريد إضافتها...</p>
+    <!-- قسم الملصقات والرسائل الخاصة -->
+    <section class="love-section">
+        <div class="container">
+            <!-- قسم ملصقات الحب -->
+            <div class="stickers-container">
+                <h2>بوابة حب يوسف ونرمين</h2>
+                <div class="stickers-grid">
+                    <div class="sticker-card">❤️ يوسف يحب نرمين</div>
+                    <div class="sticker-card">🌹 N & Y</div>
+                    <div class="sticker-card">💍 حبي الأبدي</div>
+                    <div class="sticker-card">✨ توأم روحي</div>
+                    <div class="sticker-card">♾️ Youssef & Nermin</div>
+                    <div class="sticker-card">💖 معا للأبد</div>
+                </div>
+            </div>
+
+            <!-- قسم رسالة من القلب -->
+            <div class="love-message-box">
+                <h2>كلمات خاصة لنرمين من قلب يوسف</h2>
+                <p>
+                    حبيبتي نرمين، كل دقة في قلبي تهتف باسمك، أنتِ النور في عيني والسكينة في روحي. 
+                    أحبكِ الآن، وغداً، وإلى الأبد...
+                </p>
             </div>
         </div>
-    </main>
+    </section>
 
-    <script src="js/script.js"></script>
+    <script src="script.js"></script>
 </body>
 </html>
