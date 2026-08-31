@@ -52,10 +52,10 @@ body {
     padding-bottom: 3px;
 }
 
-/* القسم الرئيسي والخلفية */
+/* القسم الرئيسي والخلفية (تم استبدال الصورة بخلفية رومانسية فخمة) */
 .hero-section {
     height: 100vh;
-    background: url('https://images.unsplash.com/photo-1506744038136-46273834b3fb?auto=format&fit=crop&w=1920&q=80') no-repeat center center/cover;
+    background: url('https://images.unsplash.com/photo-1518199266791-5375a83190b7?auto=format&fit=crop&w=1920&q=80') no-repeat center center/cover;
     position: relative;
     display: flex;
     justify-content: center;
@@ -186,6 +186,7 @@ body {
     line-height: 1.8;
     color: #e0e0e0;
 }
+
 /* خلفية خاصة بصفحة كلمات من القلب */
 .words-hero {
     background: url('https://images.unsplash.com/photo-1518837695005-2083093ee35b?auto=format&fit=crop&w=1920&q=80') no-repeat center center/cover fixed;
@@ -197,6 +198,7 @@ body {
     min-height: 100vh;
     padding-bottom: 60px;
 }
+
 /* عناوين الأقسام */
 .section-title {
     color: #d4af37;
@@ -280,6 +282,7 @@ body {
     object-fit: cover;
     filter: brightness(0.85);
 }
+
 /* الخلفيات الرومانسية المدمجة داخل الصفحة */
 .inner-bg-box {
     background-attachment: fixed;
