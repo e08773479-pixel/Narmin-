@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>مفاجأة لنرمين ❤️</title>
+    <link rel="stylesheet" href="style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+
+    <!-- شاشة الباسورد (البداية) -->
+    <div id="login-box" class="login-card">
+        <h2>لاف يو نورمين 🤍</h2>
+        <p class="sub-title">نورمين لاف يوسف</p>
+        <p class="hint">افتح المفاجاة بس لما تكتب كلمة **بحبك** ❤️</p>
+        
+        <input type="text" id="password-input" placeholder="اكتب كلمة السر هنا...">
+        <button id="check-btn">دخول المفاجأة ✨</button>
+        <p id="error-text" class="error"></p>
+    </div>
+
+    <!-- شاشة المفاجأة الأساسية (مخفية لحد ما تكتب الباسورد) -->
+    <div id="surprise-box" class="main-wrapper" style="display: none;">
+        <div class="hearts-container" id="heartsContainer"></div>
+
+        <div class="card">
+            <h1>نرمين & يوسف 💕</h1>
+            <div class="message-box">
+                <p id="love-message">أحلى صدفة في حياتي إنك معايا يا نرمين.. ربنا ما يحرمني منك أبداً! ✨</p>
+            </div>
+            <button id="next-msg-btn" class="btn-love">دوس هنا كمان 💖</button>
+        </div>
+
+        <!-- العداد اللي بيعدي من الساعة 1 بالليل -->
+        <div class="card counter-card">
+            <h2>أول كلام بينا 🤍</h2>
+            <div class="counter-grid">
+                <div class="counter-box">
+                    <span id="days-count">0</span>
+                    <p>أيام</p>
+                </div>
+                <div class="counter-box">
+                    <span id="hours-count">0</span>
+                    <p>ساعات</p>
+                </div>
+                <div class="counter-box">
+                    <span id="minutes-count">0</span>
+                    <p>دقائق</p>
+                </div>
+                <div class="counter-box">
+                    <span id="seconds-count">0</span>
+                    <p>ثواني</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
