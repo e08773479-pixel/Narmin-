@@ -100,3 +100,65 @@ document.addEventListener('DOMContentLoaded', () => {
         calendarGrid.appendChild(dayCard);
     }
 });
+/* ==========================================
+   إصلاح شبكة المربعات لتظهر فوراً
+   ========================================== */
+.calendar-grid {
+    display: grid !important;
+    grid-template-columns: repeat(auto-fill, minmax(100px, 1fr)) !important;
+    gap: 15px !important;
+    width: 100% !important;
+    min-height: 150px !important; /* ضمان وجود مساحة للمربعات */
+    background: rgba(15, 23, 33, 0.8) !important;
+    border: 1px solid #d4af37 !important;
+    padding: 20px !important;
+    border-radius: 15px !important;
+    margin-top: 20px !important;
+    box-sizing: border-box !important;
+}
+
+/* شكل كارت اليوم */
+.day-card {
+    background: rgba(255, 255, 255, 0.08) !important;
+    border: 1px solid rgba(212, 175, 55, 0.5) !important;
+    border-radius: 10px !important;
+    padding: 15px 5px !important;
+    display: flex !important;
+    flex-direction: column !important;
+    align-items: center !important;
+    justify-content: center !important;
+    cursor: pointer !important;
+    transition: all 0.3s ease !important;
+    min-height: 90px !important;
+}
+
+.day-card:hover {
+    background: rgba(212, 175, 55, 0.2) !important;
+    border-color: #d4af37 !important;
+    transform: translateY(-3px) !important;
+}
+
+.day-date {
+    font-size: 13px !important;
+    color: #d4af37 !important;
+    font-weight: bold !important;
+}
+
+.day-count {
+    font-size: 12px !important;
+    color: #ffffff !important;
+    margin: 4px 0 !important;
+}
+
+.day-status {
+    font-size: 18px !important;
+    height: 22px !important;
+    color: #4caf50 !important;
+}
+
+/* عند التعليم بـ ✔️ */
+.day-card.checked {
+    background: rgba(212, 175, 55, 0.3) !important;
+    border: 2px solid #d4af37 !important;
+    box-shadow: 0 0 10px rgba(212, 175, 55, 0.5) !important;
+}
