@@ -40,29 +40,34 @@ function updateCounter() {
 // تحديث العداد كل ثانية تلقائياً
 setInterval(updateCounter, 1000);
 updateCounter();
+
+// ==========================================
+// كود توليد مربعات الأيام (يبدأ فوراً من اليوم)
+// ==========================================
 document.addEventListener('DOMContentLoaded', () => {
     const calendarGrid = document.getElementById('calendar-grid');
     if (!calendarGrid) return; // للتأكد أن الصفحة هي صفحة رحلتنا الخالدة
 
-    // تاريخ بداية الرحلة (سنة، شهر - 1، يوم)
-    // 7 يعبر عن شهر أغسطس (لأن الشهور تبدأ من 0)
-    const startDate = new Date(2026, 7, 31); 
-
+    // بداية التتبع من اليوم: 31 أغسطس 2026 (شهر أغسطس = 7 في JS)
+    const journeyStartDate = new Date(2026, 7, 31); 
     const today = new Date();
-    startDate.setHours(0, 0, 0, 0);
+
+    journeyStartDate.setHours(0, 0, 0, 0);
     today.setHours(0, 0, 0, 0);
 
-    // حساب كم يوم مر من تاريخ البداية لحد النهارده
-    const timeDiff = today.getTime() - startDate.getTime();
-    const totalDaysPassed = Math.max(1, Math.floor(timeDiff / (1000 * 3600 * 24)) + 1);
+    // حساب الأيام (يضمن إظهار مربع اليوم الأول فوراً)
+    const diffTime = today.getTime() - journeyStartDate.getTime();
+    const totalDaysPassed = Math.max(1, Math.floor(diffTime / (1000 * 3600 * 24)) + 1);
 
     // استرجاع علامات الصح المحفوظة من المتصفح
     const savedChecks = JSON.parse(localStorage.getItem('journey_auto_days')) || {};
 
-    // إنشاء مربعات الأيام تلقائياً
+    calendarGrid.innerHTML = '';
+
+    // إنشاء مربعات الأيام بدءاً من مربع اليوم (اليوم 1)
     for (let i = 0; i < totalDaysPassed; i++) {
-        const currentDate = new Date(startDate);
-        currentDate.setDate(startDate.getDate() + i);
+        const currentDate = new Date(journeyStartDate);
+        currentDate.setDate(journeyStartDate.getDate() + i);
 
         const dateKey = `${currentDate.getFullYear()}-${currentDate.getMonth() + 1}-${currentDate.getDate()}`;
         const formattedDisplayDate = `${currentDate.getDate()}/${currentDate.getMonth() + 1}/${currentDate.getFullYear()}`;
@@ -81,7 +86,7 @@ document.addEventListener('DOMContentLoaded', () => {
             <span class="day-status">${isChecked ? '✔️' : ''}</span>
         `;
 
-        // إمكانية الضغط لوضع علامة الصح وحفظها
+        // عند الضغط على المربع لوضع علامة صح أو إزالتها
         dayCard.addEventListener('click', () => {
             const checked = dayCard.classList.toggle('checked');
             const statusSpan = dayCard.querySelector('.day-status');
