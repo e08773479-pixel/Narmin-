@@ -6,6 +6,67 @@
     <title>رحلتنا الخالدة - يوسف ونرمين</title>
     <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;700;800&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="style.css">
+    
+    <!-- تنسيق احتياطي مباشر لضمان إظهار المربعات فوراً -->
+    <style>
+        .calendar-grid {
+            display: grid !important;
+            grid-template-columns: repeat(auto-fill, minmax(110px, 1fr)) !important;
+            gap: 15px !important;
+            width: 100% !important;
+            min-height: 120px !important;
+            background: rgba(15, 23, 33, 0.85) !important;
+            border: 1px solid #d4af37 !important;
+            padding: 20px !important;
+            border-radius: 15px !important;
+            margin-top: 20px !important;
+            box-sizing: border-box !important;
+        }
+
+        .day-card {
+            background: rgba(255, 255, 255, 0.08) !important;
+            border: 1px solid rgba(212, 175, 55, 0.5) !important;
+            border-radius: 12px !important;
+            padding: 15px 5px !important;
+            display: flex !important;
+            flex-direction: column !important;
+            align-items: center !important;
+            justify-content: center !important;
+            cursor: pointer !important;
+            transition: all 0.3s ease !important;
+            min-height: 90px !important;
+        }
+
+        .day-card:hover {
+            background: rgba(212, 175, 55, 0.25) !important;
+            border-color: #d4af37 !important;
+            transform: translateY(-3px) !important;
+        }
+
+        .day-date {
+            font-size: 13px !important;
+            color: #d4af37 !important;
+            font-weight: bold !important;
+        }
+
+        .day-count {
+            font-size: 12px !important;
+            color: #ffffff !important;
+            margin: 4px 0 !important;
+        }
+
+        .day-status {
+            font-size: 18px !important;
+            height: 22px !important;
+            color: #4caf50 !important;
+        }
+
+        .day-card.checked {
+            background: rgba(212, 175, 55, 0.35) !important;
+            border: 2px solid #d4af37 !important;
+            box-shadow: 0 0 10px rgba(212, 175, 55, 0.5) !important;
+        }
+    </style>
 </head>
 <body>
 
@@ -41,11 +102,70 @@
 
             <!-- شبكة الأيام -->
             <div class="calendar-grid" id="calendar-grid">
-                <!-- الأيام ستولّد تلقائياً بداية من الغد -->
+                <!-- المربعات ستولّد هنا فوراً -->
             </div>
         </div>
     </main>
 
+    <!-- ملف السكريبت الخارجي الخاص بالمؤقت -->
     <script src="script.js"></script>
+
+    <!-- كود إجباري لتوليد مربعات الأيام فوراً -->
+    <script>
+        function createJourneyCards() {
+            const calendarGrid = document.getElementById('calendar-grid');
+            if (!calendarGrid) return;
+
+            // تاريخ بداية الرحلة: 31 أغسطس 2026
+            const startDate = new Date(2026, 7, 31);
+            const today = new Date();
+
+            startDate.setHours(0, 0, 0, 0);
+            today.setHours(0, 0, 0, 0);
+
+            // حساب عدد الأيام (يضمن إظهار اليوم الأول 31/8/2026 فوراً)
+            const diffTime = today.getTime() - startDate.getTime();
+            const totalDays = Math.max(1, Math.floor(diffTime / (1000 * 3600 * 24)) + 1);
+
+            const savedChecks = JSON.parse(localStorage.getItem('journey_auto_days')) || {};
+            calendarGrid.innerHTML = '';
+
+            for (let i = 0; i < totalDays; i++) {
+                const currentDate = new Date(startDate);
+                currentDate.setDate(startDate.getDate() + i);
+
+                const dateKey = `${currentDate.getFullYear()}-${currentDate.getMonth() + 1}-${currentDate.getDate()}`;
+                const formattedDate = `${currentDate.getDate()}/${currentDate.getMonth() + 1}/${currentDate.getFullYear()}`;
+
+                const card = document.createElement('div');
+                card.className = 'day-card';
+                
+                const isChecked = savedChecks[dateKey] || false;
+                if (isChecked) card.classList.add('checked');
+
+                card.innerHTML = `
+                    <span class="day-date">${formattedDate}</span>
+                    <span class="day-count">اليوم ${i + 1}</span>
+                    <span class="day-status">${isChecked ? '✔️' : ''}</span>
+                `;
+
+                card.addEventListener('click', () => {
+                    const checked = card.classList.toggle('checked');
+                    card.querySelector('.day-status').textContent = checked ? '✔️' : '';
+                    savedChecks[dateKey] = checked;
+                    localStorage.setItem('journey_auto_days', JSON.stringify(savedChecks));
+                });
+
+                calendarGrid.appendChild(card);
+            }
+        }
+
+        // تشغيل مباشر عند التحميل
+        if (document.readyState === 'loading') {
+            document.addEventListener('DOMContentLoaded', createJourneyCards);
+        } else {
+            createJourneyCards();
+        }
+    </script>
 </body>
 </html>
