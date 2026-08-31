@@ -1,1 +1,124 @@
 
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Cairo', sans-serif;
+}
+
+body {
+    background-color: #0b131a;
+    color: #fff;
+    overflow-x: hidden;
+}
+
+/* شريط التنقل */
+.navbar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 20px 50px;
+    background: rgba(11, 19, 26, 0.85);
+    border-bottom: 1px solid rgba(212, 175, 55, 0.3);
+    position: fixed;
+    width: 100%;
+    top: 0;
+    z-index: 1000;
+}
+
+.logo {
+    font-size: 24px;
+    color: #d4af37;
+    font-weight: bold;
+}
+
+.nav-links {
+    list-style: none;
+    display: flex;
+    gap: 30px;
+}
+
+.nav-links a {
+    text-decoration: none;
+    color: #fff;
+    font-size: 16px;
+    transition: 0.3s;
+}
+
+.nav-links a:hover, .nav-links a.active {
+    color: #d4af37;
+    border-bottom: 2px solid #d4af37;
+    padding-bottom: 5px;
+}
+
+/* القسم الرئيسي الخلفية الطبيعية الفخمة */
+.hero-section {
+    height: 100vh;
+    background: url('https://images.unsplash.com/photo-1506744038136-46273834b3fb?auto=format&fit=crop&w=1920&q=80') no-repeat center center/cover;
+    position: relative;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+}
+
+.overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(11, 19, 26, 0.65);
+}
+
+.content-container {
+    position: relative;
+    z-index: 10;
+    max-width: 800px;
+    padding: 20px;
+}
+
+.content-container h1 {
+    font-size: 36px;
+    color: #d4af37;
+    margin-bottom: 30px;
+}
+
+/* تنسيق عداد الوقت */
+.countdown-timer {
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+    margin-bottom: 40px;
+}
+
+.time-box {
+    background: rgba(18, 30, 40, 0.85);
+    border: 1px solid rgba(212, 175, 55, 0.4);
+    padding: 20px;
+    border-radius: 10px;
+    min-width: 90px;
+    box-shadow: 0 10px 25px rgba(0,0,0,0.5);
+}
+
+.time-box span {
+    display: block;
+    font-size: 32px;
+    font-weight: bold;
+    color: #fff;
+}
+
+.time-box label {
+    font-size: 14px;
+    color: #d4af37;
+}
+
+/* صندوق الكلمات المخصص */
+.custom-text-box {
+    background: rgba(18, 30, 40, 0.7);
+    border: 1px dashed rgba(212, 175, 55, 0.5);
+    padding: 20px;
+    border-radius: 8px;
+    color: #ccc;
+    font-size: 16px;
+}
