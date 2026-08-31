@@ -1,8 +1,10 @@
 :root {
-    --primary-pink: #ff4b6e;
-    --secondary-pink: #ff758c;
-    --light-bg: #fff0f3;
-    --text-main: #2d3436;
+    --bg-deep: #120814;
+    --card-bg: rgba(26, 15, 30, 0.88);
+    --gold-primary: #e6b17e;
+    --gold-light: #f3d5b5;
+    --text-light: #f8fafc;
+    --text-muted: #cbd5e1;
 }
 
 * {
@@ -13,13 +15,14 @@
 }
 
 body {
-    background: linear-gradient(135deg, #ff758c 0%, #ff7eb3 100%);
+    background: radial-gradient(circle at center, #2e1037 0%, var(--bg-deep) 100%);
     min-height: 100vh;
     display: flex;
     justify-content: center;
     align-items: center;
     overflow-x: hidden;
-    padding: 20px 0;
+    padding: 30px 0;
+    color: var(--text-light);
 }
 
 .screen {
@@ -33,77 +36,102 @@ body {
     display: flex;
 }
 
-.card-box {
-    background: #ffffff;
-    padding: 35px 25px;
-    border-radius: 24px;
-    box-shadow: 0 15px 35px rgba(0, 0, 0, 0.15);
+.luxury-card {
+    background: var(--card-bg);
+    backdrop-filter: blur(15px);
+    border: 1px solid rgba(230, 177, 126, 0.25);
+    padding: 40px 30px;
+    border-radius: 28px;
+    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.5);
     text-align: center;
-    max-width: 500px;
+    max-width: 520px;
     width: 100%;
     position: relative;
     z-index: 10;
-    margin-bottom: 20px;
+    margin-bottom: 25px;
 }
 
-.card-box h2, .card-box h1, .card-box h3 {
-    color: var(--primary-pink);
-    margin-bottom: 10px;
+/* حركة الاهتزاز عند الخطأ (برمجة احترافية) */
+@keyframes shake {
+    0% { transform: translateX(0); }
+    20% { transform: translateX(-10px); }
+    40% { transform: translateX(10px); }
+    60% { transform: translateX(-10px); }
+    80% { transform: translateX(10px); }
+    100% { transform: translateX(0); }
+}
+
+.shake {
+    animation: shake 0.4s ease-in-out;
+}
+
+.luxury-card h2, .luxury-card h1, .luxury-card h3 {
+    color: var(--gold-primary);
+    margin-bottom: 12px;
+    font-weight: 700;
 }
 
 .sub-title {
-    color: var(--text-main);
-    font-weight: bold;
-    font-size: 15px;
-    margin-bottom: 5px;
+    color: var(--text-light);
+    font-weight: 600;
+    font-size: 16px;
+    margin-bottom: 8px;
 }
 
 .hint {
-    color: #888;
+    color: var(--text-muted);
     font-size: 13px;
-    margin-bottom: 20px;
+    margin-bottom: 25px;
+}
+
+.hint span {
+    color: var(--gold-primary);
+    font-weight: bold;
 }
 
 input[type="password"] {
     width: 100%;
-    padding: 14px;
-    border: 2px solid var(--secondary-pink);
-    border-radius: 12px;
+    padding: 15px;
+    background: rgba(18, 8, 20, 0.6);
+    border: 2px solid rgba(230, 177, 126, 0.4);
+    border-radius: 14px;
     font-size: 16px;
+    color: #fff;
     text-align: center;
     outline: none;
-    margin-bottom: 15px;
+    margin-bottom: 20px;
     transition: 0.3s;
 }
 
 input[type="password"]:focus {
-    border-color: var(--primary-pink);
-    box-shadow: 0 0 10px rgba(255, 75, 110, 0.2);
+    border-color: var(--gold-primary);
+    box-shadow: 0 0 15px rgba(230, 177, 126, 0.3);
 }
 
-.main-btn {
-    background: linear-gradient(135deg, var(--primary-pink), var(--secondary-pink));
-    color: white;
+.luxury-btn {
+    background: linear-gradient(135deg, var(--gold-primary), #c28854);
+    color: #120814;
     border: none;
-    padding: 12px 25px;
+    padding: 14px 28px;
     font-size: 16px;
-    font-weight: bold;
-    border-radius: 12px;
+    font-weight: 900;
+    border-radius: 14px;
     cursor: pointer;
     width: 100%;
-    box-shadow: 0 5px 15px rgba(255, 75, 110, 0.3);
+    box-shadow: 0 5px 20px rgba(230, 177, 126, 0.3);
     transition: 0.3s;
 }
 
-.main-btn:hover {
-    transform: translateY(-2px);
-    box-shadow: 0 8px 20px rgba(255, 75, 110, 0.5);
+.luxury-btn:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 8px 25px rgba(230, 177, 126, 0.5);
+    background: linear-gradient(135deg, var(--gold-light), var(--gold-primary));
 }
 
 .error-text {
-    color: #e74c3c;
+    color: #ff6b6b;
     font-size: 13px;
-    margin-top: 10px;
+    margin-top: 12px;
 }
 
 .content-wrapper {
@@ -111,25 +139,25 @@ input[type="password"]:focus {
     flex-direction: column;
     align-items: center;
     width: 100%;
-    max-width: 500px;
+    max-width: 520px;
 }
 
 .message-container {
-    background: var(--light-bg);
-    padding: 20px;
-    border-radius: 14px;
-    border: 1px dashed var(--primary-pink);
+    background: rgba(18, 8, 20, 0.5);
+    padding: 22px;
+    border-radius: 16px;
+    border: 1px dashed rgba(230, 177, 126, 0.3);
     margin-bottom: 20px;
-    min-height: 80px;
+    min-height: 90px;
     display: flex;
     align-items: center;
     justify-content: center;
 }
 
 .message-container p {
-    color: #444;
-    font-size: 16px;
-    line-height: 1.5;
+    color: var(--text-light);
+    font-size: 17px;
+    line-height: 1.6;
 }
 
 /* تنسيق القصيدة */
@@ -138,24 +166,24 @@ input[type="password"]:focus {
 }
 
 .poem-content {
-    background: var(--light-bg);
-    padding: 20px;
-    border-radius: 14px;
-    border: 1px dashed var(--primary-pink);
-    max-height: 250px;
+    background: rgba(18, 8, 20, 0.5);
+    padding: 22px;
+    border-radius: 16px;
+    border: 1px dashed rgba(230, 177, 126, 0.3);
+    max-height: 280px;
     overflow-y: auto;
 }
 
 .poem-content p {
     font-size: 15px;
-    color: #444;
-    line-height: 1.8;
-    margin-bottom: 4px;
+    color: var(--text-muted);
+    line-height: 1.9;
+    margin-bottom: 6px;
 }
 
 .divider {
-    color: var(--primary-pink);
-    margin: 8px 0;
+    color: var(--gold-primary);
+    margin: 12px 0;
     font-weight: bold;
 }
 
@@ -163,28 +191,29 @@ input[type="password"]:focus {
 .counter-grid {
     display: flex;
     justify-content: space-between;
-    gap: 8px;
-    margin-top: 10px;
+    gap: 10px;
+    margin-top: 15px;
 }
 
 .time-box {
-    background: var(--light-bg);
+    background: rgba(18, 8, 20, 0.6);
     flex: 1;
-    padding: 12px 5px;
-    border-radius: 12px;
+    padding: 14px 6px;
+    border-radius: 14px;
+    border: 1px solid rgba(230, 177, 126, 0.15);
 }
 
 .time-box span {
     display: block;
-    font-size: 20px;
+    font-size: 22px;
     font-weight: bold;
-    color: var(--primary-pink);
+    color: var(--gold-primary);
 }
 
 .time-box p {
     font-size: 12px;
-    color: #666;
-    margin-top: 4px;
+    color: var(--text-muted);
+    margin-top: 5px;
 }
 
 /* تأثير القلوب */
@@ -200,13 +229,13 @@ input[type="password"]:focus {
 
 .heart {
     position: absolute;
-    color: rgba(255, 255, 255, 0.7);
-    font-size: 22px;
-    animation: floatUp 5s linear infinite;
+    color: rgba(230, 177, 126, 0.6);
+    font-size: 20px;
+    animation: floatUp 6s linear infinite;
 }
 
 @keyframes floatUp {
     0% { transform: translateY(100vh) scale(0.5); opacity: 0; }
-    50% { opacity: 1; }
-    100% { transform: translateY(-10vh) scale(1.2); opacity: 0; }
+    50% { opacity: 0.8; }
+    100% { transform: translateY(-10vh) scale(1.3); opacity: 0; }
 }
