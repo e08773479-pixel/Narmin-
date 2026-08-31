@@ -40,3 +40,58 @@ function updateCounter() {
 // تحديث العداد كل ثانية تلقائياً
 setInterval(updateCounter, 1000);
 updateCounter();
+document.addEventListener('DOMContentLoaded', () => {
+    const calendarGrid = document.getElementById('calendar-grid');
+    if (!calendarGrid) return; // للتأكد أن الصفحة هي صفحة رحلتنا الخالدة
+
+    // تاريخ بداية الرحلة (سنة، شهر - 1، يوم)
+    // 7 يعبر عن شهر أغسطس (لأن الشهور تبدأ من 0)
+    const startDate = new Date(2026, 7, 31); 
+
+    const today = new Date();
+    startDate.setHours(0, 0, 0, 0);
+    today.setHours(0, 0, 0, 0);
+
+    // حساب كم يوم مر من تاريخ البداية لحد النهارده
+    const timeDiff = today.getTime() - startDate.getTime();
+    const totalDaysPassed = Math.max(1, Math.floor(timeDiff / (1000 * 3600 * 24)) + 1);
+
+    // استرجاع علامات الصح المحفوظة من المتصفح
+    const savedChecks = JSON.parse(localStorage.getItem('journey_auto_days')) || {};
+
+    // إنشاء مربعات الأيام تلقائياً
+    for (let i = 0; i < totalDaysPassed; i++) {
+        const currentDate = new Date(startDate);
+        currentDate.setDate(startDate.getDate() + i);
+
+        const dateKey = `${currentDate.getFullYear()}-${currentDate.getMonth() + 1}-${currentDate.getDate()}`;
+        const formattedDisplayDate = `${currentDate.getDate()}/${currentDate.getMonth() + 1}/${currentDate.getFullYear()}`;
+
+        const dayCard = document.createElement('div');
+        dayCard.classList.add('day-card');
+
+        const isChecked = savedChecks[dateKey] || false;
+        if (isChecked) {
+            dayCard.classList.add('checked');
+        }
+
+        dayCard.innerHTML = `
+            <span class="day-date">${formattedDisplayDate}</span>
+            <span class="day-count">اليوم ${i + 1}</span>
+            <span class="day-status">${isChecked ? '✔️' : ''}</span>
+        `;
+
+        // إمكانية الضغط لوضع علامة الصح وحفظها
+        dayCard.addEventListener('click', () => {
+            const checked = dayCard.classList.toggle('checked');
+            const statusSpan = dayCard.querySelector('.day-status');
+            
+            statusSpan.textContent = checked ? '✔️' : '';
+
+            savedChecks[dateKey] = checked;
+            localStorage.setItem('journey_auto_days', JSON.stringify(savedChecks));
+        });
+
+        calendarGrid.appendChild(dayCard);
+    }
+});
