@@ -551,3 +551,48 @@ body {
     border: 1px solid #d4af37;
     box-shadow: 0 0 12px rgba(212, 175, 55, 0.4);
 }
+/* تنسيق عنوان المؤقت */
+.timer-title {
+    color: #d4af37 !important;
+    font-size: 1.5rem;
+    margin-top: 25px;
+    margin-bottom: 15px;
+    text-shadow: 0 0 10px rgba(212, 175, 55, 0.4);
+}
+
+/* حاوية العداد */
+.countdown-timer {
+    display: flex !important;
+    justify-content: center !important;
+    align-items: center !important;
+    gap: 15px !important;
+    margin: 10px auto !important;
+    direction: ltr !important; /* للحفاظ على ترتيب الأرقام */
+}
+
+/* مربع الوقت */
+.time-box {
+    background: rgba(15, 23, 33, 0.85) !important;
+    border: 1px solid #d4af37 !important;
+    border-radius: 12px !important;
+    padding: 12px 18px !important;
+    display: flex !important;
+    flex-direction: column !important;
+    align-items: center !important;
+    min-width: 70px !important;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.5) !important;
+    backdrop-filter: blur(5px);
+}
+
+.time-box span {
+    font-size: 2rem !important;
+    font-weight: 800 !important;
+    color: #ffffff !important;
+    text-shadow: 0 0 8px #d4af37;
+}
+
+.time-box label {
+    font-size: 0.85rem !important;
+    color: #d4af37 !important;
+    margin-top: 2px !important;
+}
