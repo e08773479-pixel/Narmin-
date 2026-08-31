@@ -186,3 +186,14 @@ body {
     line-height: 1.8;
     color: #e0e0e0;
 }
+/* خلفية خاصة بصفحة كلمات من القلب */
+.words-hero {
+    background: url('https://images.unsplash.com/photo-1518837695005-2083093ee35b?auto=format&fit=crop&w=1920&q=80') no-repeat center center/cover fixed;
+    position: relative;
+}
+
+.words-overlay {
+    background: rgba(6, 11, 17, 0.85);
+    min-height: 100vh;
+    padding-bottom: 60px;
+}
